@@ -1,6 +1,7 @@
 import time
 import threading
 import csv
+import datetime
 
 from PyQt5.QtWidgets import QApplication
 
@@ -16,7 +17,7 @@ def printClipboardData(clipboard_content):
     with open('clipboard_monitor.csv', 'a', newline='') as f:
         writer = csv.writer(f, delimiter=";", quoting=csv.QUOTE_MINIMAL)
 
-        row = [clipboard_content] + [str(mimeData.formats())]
+        row = [datetime.datetime.now()] + [clipboard_content] + [str(mimeData.formats())]
 
         for f in mimeData.formats():
             print("---- %s ----" % f)
